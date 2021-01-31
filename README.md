@@ -1,4 +1,4 @@
-# [paypal-fee-calculator](https://paypal-fee-calculator.vercel.app)
+# [paypal-fee-calculator](https://paypal-fee-calculator.vercel.app) (WIP)
 
 React Web App to calculate the PayPal fee which is 2.49 % + €0,35 for Germany.
 
