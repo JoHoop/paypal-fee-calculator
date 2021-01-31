@@ -3,7 +3,7 @@ import { Header } from "../Components/Header";
 import { Footer } from "../Components/Footer";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
-import { GrammarCheck } from "../Components/GrammarCheck";
+import { Calculator } from "../Components/Calculator";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +24,7 @@ export const HomePage = () => {
     <div className={classes.root}>
       <Header />
       <Container maxWidth="md" component="main" className={classes.main}>
-        <GrammarCheck />
+        <Calculator />
       </Container>
       <Footer />
     </div>
