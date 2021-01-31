@@ -55,13 +55,13 @@ export const Header = () => {
         </Typography>
         <nav>
           <Tooltip
-            title={"Toggle light/dark theme"}
+            title={"GitHub Repo"}
             placement="right"
             TransitionComponent={Zoom}
           >
             <IconButton
               color="inherit"
-              aria-label={"Toggle light/dark theme"}
+              aria-label={"GitHub Repo"}
               className={classes.iconButton}
               href="https://github.com/JoHoop/paypal-fee-calculator"
               target="_blank"
