@@ -10,7 +10,6 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  FormHelperText,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -129,12 +128,10 @@ export const Calculator = () => {
           value={country}
           onChange={handleCountryChange}
           displayEmpty
-          className={classes.selectEmpty}
         >
           <MenuItem value={"Germany"}>Germany</MenuItem>
           <MenuItem value={"United States"}>United States</MenuItem>
         </Select>
-        <FormHelperText>Label + placeholder</FormHelperText>
       </FormControl>
       <Typography variant="body1">based on a fee of</Typography>
       <Input
