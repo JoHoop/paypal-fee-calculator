@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Typography } from "@material-ui/core";
@@ -34,46 +33,64 @@ export const NumberFormatCustom = (props) => {
   );
 };
 
-NumberFormatCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
 export const Calculator = () => {
   const classes = useStyles();
-  const [amount, setAmount] = React.useState("50");
-  const [fee, setFee] = React.useState("1.75");
-  const [ask, setAsk] = React.useState("50");
+  const [values, setValues] = useState({
+    amount: "50",
+    fee: "1.75",
+    receive: "48.25",
+    ask: "51.80",
+  });
 
   const handleChange = (event) => {
-    setAmount(event.target.value);
-    setFee((event.target.value * 0.029 + 0.3).toFixed(2));
-    setAsk((event.target.value * 1.03 + 0.309).toFixed(2));
+    const value = event.target.value;
+    const fees = value * 0.029 + 0.3;
+
+    setValues({
+      amount: value,
+      fee: fees.toFixed(2),
+      receive: (value - fees).toFixed(2),
+      ask: ((value + 0.3) / 0.971).toFixed(2),
+    });
   };
 
   return (
     <div className={classes.root}>
       <TextField
         label="Amount"
-        value={amount}
+        value={values.amount}
         onChange={handleChange}
-        name="numberformat"
-        id="formatted-numberformat-input"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
       />
       <br />
-      <Typography variant="h6" color="inherit">
-        Fee: € {fee}
-      </Typography>
-      <Typography variant="h6" color="inherit">
-        You get € {amount - fee}
-      </Typography>
-      <Typography variant="h6" color="inherit">
-        Ask for € {ask}
-      </Typography>
+      <TextField
+        label="Fee"
+        value={values.fee}
+        disabled
+        InputProps={{
+          inputComponent: NumberFormatCustom,
+        }}
+      />
+      <br />
+      <TextField
+        label="You would receive"
+        value={values.receive}
+        disabled
+        InputProps={{
+          inputComponent: NumberFormatCustom,
+        }}
+      />
+      <br />
+      <TextField
+        label="You should ask for"
+        value={values.ask}
+        disabled
+        InputProps={{
+          inputComponent: NumberFormatCustom,
+        }}
+      />
     </div>
   );
 };
