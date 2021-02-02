@@ -123,7 +123,7 @@ export const Calculator = () => {
       <br />
       <br />
       <br />
-      <FormControl className={classes.formControl}>
+      <FormControl>
         <InputLabel shrink>Country</InputLabel>
         <Select value={country} onChange={handleCountryChange} displayEmpty>
           <MenuItem value={"Germany"}>Germany</MenuItem>
@@ -132,7 +132,6 @@ export const Calculator = () => {
       </FormControl>
       <Typography variant="body1">based on a fee of</Typography>
       <Input
-        className={classes.input}
         value={feePercent}
         margin="dense"
         inputProps={{
@@ -150,7 +149,6 @@ export const Calculator = () => {
       {"%"}
       <Typography variant="body1">plus</Typography>
       <Input
-        className={classes.input}
         value={plusCents}
         margin="dense"
         inputProps={{
