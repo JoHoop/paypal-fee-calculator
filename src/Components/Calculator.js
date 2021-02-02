@@ -42,17 +42,18 @@ export const Calculator = () => {
     ask: "51.80",
   });
 
+  const feePercent = 2.49; // 2.9
+  const plusCents = 0.35; // 0.3
+
   const handleChange = (event) => {
     const value = Number(event.target.value);
-    //const fees = value * 0.029 + 0.3;
-    //ask: ((value + 0.3) / 0.971).toFixed(2),
-    const fees = value * 0.0249 + 0.35;
+    const fees = value * (feePercent / 100) + plusCents;
 
     setValues({
       amount: value,
       fee: fees.toFixed(2),
       receive: (value - fees).toFixed(2),
-      ask: ((value + 0.35) / 0.9751).toFixed(2),
+      ask: ((value + plusCents) / (1 - feePercent / 100)).toFixed(2),
     });
   };
 
