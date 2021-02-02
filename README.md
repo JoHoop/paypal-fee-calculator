@@ -1,14 +1,12 @@
-# [paypal-fee-calculator](https://paypal-fee-calculator.vercel.app) (WIP)
+# [paypal-fee-calculator](https://paypal-fee-calculator.vercel.app)
 
-React Web App to calculate the PayPal fee which is 2.49 % + €0,35 for Germany.
+React Web App to calculate PayPal fees.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [Material-UI](https://material-ui.com).
 
 This project is deployed at [paypal-fee-calculator.vercel.app](https://paypal-fee-calculator.vercel.app "Production Deployment") with vercel.com
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fjohoop%2Fpaypal-fee-calculator&c=1)
-
-![Screenshot](/screenshot.png?raw=true)
 
 ## Available Scripts
 
@@ -36,3 +34,5 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+![Screenshot](/screenshot.png?raw=true)
