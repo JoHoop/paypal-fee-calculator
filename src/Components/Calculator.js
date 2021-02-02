@@ -43,7 +43,7 @@ export const Calculator = () => {
   });
 
   const handleChange = (event) => {
-    const value = event.target.value;
+    const value = Number(event.target.value);
     const fees = value * 0.029 + 0.3;
 
     setValues({
