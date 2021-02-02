@@ -44,13 +44,15 @@ export const Calculator = () => {
 
   const handleChange = (event) => {
     const value = Number(event.target.value);
-    const fees = value * 0.029 + 0.3;
+    //const fees = value * 0.029 + 0.3;
+    //ask: ((value + 0.3) / 0.971).toFixed(2),
+    const fees = value * 0.0249 + 0.35;
 
     setValues({
       amount: value,
       fee: fees.toFixed(2),
       receive: (value - fees).toFixed(2),
-      ask: ((value + 0.3) / 0.971).toFixed(2),
+      ask: ((value + 0.35) / 0.9751).toFixed(2),
     });
   };
 
