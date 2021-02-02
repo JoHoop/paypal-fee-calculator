@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Typography } from "@material-ui/core";
+import { TextField, Typography, Slider, Input } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,10 +42,10 @@ export const Calculator = () => {
     ask: "51.64",
   });
 
-  const feePercent = 2.49; // 2.9
-  const plusCents = 0.35; // 0.3
+  const [feePercent, setFeePercent] = useState(2.49); // 2.9
+  const [plusCents, setPlusCents] = useState(0.35); // 0.3
 
-  const handleChange = (event) => {
+  const handleAmountChange = (event) => {
     const value = Number(event.target.value);
     const fees = value * (feePercent / 100) + plusCents;
 
@@ -57,12 +57,16 @@ export const Calculator = () => {
     });
   };
 
+  function valuetext() {
+    return `${feePercent}%`;
+  }
+
   return (
     <div className={classes.root}>
       <TextField
         label="Amount"
         value={values.amount}
-        onChange={handleChange}
+        onChange={handleAmountChange}
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
@@ -97,9 +101,66 @@ export const Calculator = () => {
       <br />
       <br />
       <br />
-      <Typography variant="body1">
-        based on a fee of {feePercent}% + €{plusCents}
-      </Typography>
+      <Typography variant="body1">based on a fee of</Typography>
+      <Input
+        className={classes.input}
+        value={feePercent}
+        margin="dense"
+        inputProps={{
+          step: 0.01,
+          min: 0.0,
+          max: 5.0,
+          type: "number",
+        }}
+        onChange={(event) => {
+          setFeePercent(
+            event.target.value === "" ? "" : Number(event.target.value)
+          );
+        }}
+      />
+      {"%"}
+      <Typography variant="body1">plus</Typography>
+      <Input
+        className={classes.input}
+        value={plusCents}
+        margin="dense"
+        inputProps={{
+          step: 0.01,
+          min: 0.0,
+          max: 5.0,
+          type: "number",
+        }}
+        onChange={(event) => {
+          setPlusCents(
+            event.target.value === "" ? "" : Number(event.target.value)
+          );
+        }}
+      />
+      {"€"}
+      <br />
+      <br />
+      <Slider
+        value={feePercent}
+        onChange={(event, newValue) => {
+          setFeePercent(newValue);
+        }}
+        getAriaValueText={valuetext}
+        step={0.01}
+        min={0.0}
+        max={5.0}
+        valueLabelDisplay="on"
+      />
+      <Slider
+        value={plusCents}
+        onChange={(event, newValue) => {
+          setPlusCents(newValue);
+        }}
+        getAriaValueText={valuetext}
+        step={0.01}
+        min={0.0}
+        max={5.0}
+        valueLabelDisplay="on"
+      />
     </div>
   );
 };
