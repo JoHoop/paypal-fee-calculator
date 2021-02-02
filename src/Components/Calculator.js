@@ -57,10 +57,6 @@ export const Calculator = () => {
     });
   };
 
-  function valuetext() {
-    return `${feePercent}%`;
-  }
-
   return (
     <div className={classes.root}>
       <TextField
@@ -144,22 +140,24 @@ export const Calculator = () => {
         onChange={(event, newValue) => {
           setFeePercent(newValue);
         }}
-        getAriaValueText={valuetext}
         step={0.01}
         min={0.0}
         max={5.0}
         valueLabelDisplay="on"
+        getAriaValueText={() => `${feePercent}%`}
+        valueLabelFormat={() => `${feePercent}%`}
       />
       <Slider
         value={plusCents}
         onChange={(event, newValue) => {
           setPlusCents(newValue);
         }}
-        getAriaValueText={valuetext}
         step={0.01}
         min={0.0}
         max={5.0}
         valueLabelDisplay="on"
+        getAriaValueText={() => `${plusCents}€`}
+        valueLabelFormat={() => `${plusCents}€`}
       />
     </div>
   );
