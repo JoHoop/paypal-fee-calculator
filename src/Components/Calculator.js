@@ -37,9 +37,9 @@ export const Calculator = () => {
   const classes = useStyles();
   const [values, setValues] = useState({
     amount: "50",
-    fee: "1.75",
-    receive: "48.25",
-    ask: "51.80",
+    fee: "1.60",
+    receive: "48.41",
+    ask: "51.64",
   });
 
   const feePercent = 2.49; // 2.9
@@ -94,6 +94,12 @@ export const Calculator = () => {
           inputComponent: NumberFormatCustom,
         }}
       />
+      <br />
+      <br />
+      <br />
+      <Typography variant="body1">
+        based on a fee of {feePercent}% + €{plusCents}
+      </Typography>
     </div>
   );
 };
