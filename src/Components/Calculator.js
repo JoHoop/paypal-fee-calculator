@@ -20,31 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const NumberFormatCustom = (props) => {
-  const { inputRef, onChange, ...other } = props;
-
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={inputRef}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-      prefix="€ "
-    />
-  );
-};
-
 export const Calculator = () => {
   const classes = useStyles();
+
   const [country, setCountry] = useState("Germany");
+  const [currencyLabel, setCurrencyLabel] = useState("€");
+
   const [values, setValues] = useState({
     amount: "50",
     fee: "1.60",
@@ -72,10 +53,34 @@ export const Calculator = () => {
     if (event.target.value === "Germany") {
       setFeePercent(2.49);
       setPlusCents(0.35);
+      setCurrencyLabel("€");
     } else if (event.target.value === "United States") {
       setFeePercent(2.9);
       setPlusCents(0.3);
+      setCurrencyLabel("$");
     }
+  };
+
+  const NumberFormatCustom = (props) => {
+    const { inputRef, onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={inputRef}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix={`${currencyLabel} `}
+      />
+    );
   };
 
   return (
@@ -160,7 +165,7 @@ export const Calculator = () => {
           );
         }}
       />
-      {"€"}
+      {currencyLabel}
       <br />
       <br />
       <Slider
@@ -184,8 +189,8 @@ export const Calculator = () => {
         min={0.0}
         max={5.0}
         valueLabelDisplay="on"
-        getAriaValueText={() => `${plusCents}€`}
-        valueLabelFormat={() => `${plusCents}€`}
+        getAriaValueText={() => `${plusCents}${currencyLabel}`}
+        valueLabelFormat={() => `${plusCents}${currencyLabel}`}
       />
     </div>
   );
