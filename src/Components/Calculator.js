@@ -119,16 +119,8 @@ export const Calculator = () => {
       <br />
       <br />
       <FormControl className={classes.formControl}>
-        <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-          Country
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-placeholder-label-label"
-          id="demo-simple-select-placeholder-label"
-          value={country}
-          onChange={handleCountryChange}
-          displayEmpty
-        >
+        <InputLabel shrink>Country</InputLabel>
+        <Select value={country} onChange={handleCountryChange} displayEmpty>
           <MenuItem value={"Germany"}>Germany</MenuItem>
           <MenuItem value={"United States"}>United States</MenuItem>
         </Select>
