@@ -18,8 +18,7 @@ export const Footer = () => {
       <footer className={classes.footer}>
         <Container maxWidth="md">
           <Typography variant="body1">
-            React Web App to calculate the PayPal fee which is 2.49 % + €0,35
-            for Germany.
+            React Web App to calculate PayPal fees.
           </Typography>
         </Container>
       </footer>
