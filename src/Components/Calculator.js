@@ -20,6 +20,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export const NumberFormatCustom = (props) => {
+  const { inputRef, onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="€ " // todo {`${currencyLabel} `}
+    />
+  );
+};
+
 export const Calculator = () => {
   const classes = useStyles();
 
@@ -59,28 +81,6 @@ export const Calculator = () => {
       setPlusCents(0.3);
       setCurrencyLabel("$");
     }
-  };
-
-  const NumberFormatCustom = (props) => {
-    const { inputRef, onChange, ...other } = props;
-
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={inputRef}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        isNumericString
-        prefix={`${currencyLabel} `}
-      />
-    );
   };
 
   return (
