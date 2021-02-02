@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Typography, Slider, Input } from "@material-ui/core";
+import {
+  TextField,
+  Typography,
+  Slider,
+  Input,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +45,7 @@ export const NumberFormatCustom = (props) => {
 
 export const Calculator = () => {
   const classes = useStyles();
+  const [country, setCountry] = useState("Germany");
   const [values, setValues] = useState({
     amount: "50",
     fee: "1.60",
@@ -42,8 +53,8 @@ export const Calculator = () => {
     ask: "51.64",
   });
 
-  const [feePercent, setFeePercent] = useState(2.49); // 2.9
-  const [plusCents, setPlusCents] = useState(0.35); // 0.3
+  const [feePercent, setFeePercent] = useState(2.49);
+  const [plusCents, setPlusCents] = useState(0.35);
 
   const handleAmountChange = (event) => {
     const value = Number(event.target.value);
@@ -55,6 +66,17 @@ export const Calculator = () => {
       receive: (value - fees).toFixed(2),
       ask: ((value + plusCents) / (1 - feePercent / 100)).toFixed(2),
     });
+  };
+
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+    if (event.target.value === "Germany") {
+      setFeePercent(2.49);
+      setPlusCents(0.35);
+    } else if (event.target.value === "United States") {
+      setFeePercent(2.9);
+      setPlusCents(0.3);
+    }
   };
 
   return (
@@ -97,6 +119,23 @@ export const Calculator = () => {
       <br />
       <br />
       <br />
+      <FormControl className={classes.formControl}>
+        <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+          Country
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-placeholder-label-label"
+          id="demo-simple-select-placeholder-label"
+          value={country}
+          onChange={handleCountryChange}
+          displayEmpty
+          className={classes.selectEmpty}
+        >
+          <MenuItem value={"Germany"}>Germany</MenuItem>
+          <MenuItem value={"United States"}>United States</MenuItem>
+        </Select>
+        <FormHelperText>Label + placeholder</FormHelperText>
+      </FormControl>
       <Typography variant="body1">based on a fee of</Typography>
       <Input
         className={classes.input}
